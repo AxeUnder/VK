@@ -1,32 +1,27 @@
 """
-Необходимо написать генераторную функцию solution, которая будет фильтровать данные из последовательности data функцией
-func_filter, к полученным данным применять функцию func_map и возвращать в качестве значения каждый второй элемент
-полученной последовательности. Нужно пользоваться здесь концепцией генератора, то есть обрабатывать не все данные разом,
-а только те, что необходимы для возвращения следующего значения. Дополните также код своей реализацией кэшируещего
-декоратора.
+Реализуйте 3 метода в классе “Counter”:
+    __init__(self, initial_count)
+        Этот метод нужен для инициализации класса с изначальным параметром “изначальный подсчет”
+    increment(self)
+        Этот метод должен делать +1 к нашему счетчику подсчетов
+    get(self)
+        Этот метод должен возвращать подсчет
 """
 
 
-def cache_deco(func):
-    cache = {}
+class Counter:
 
-    def wrapper(*args, **kwargs):
-        key = (args, tuple(kwargs.items()))
-        if key not in cache:
-            cache[key] = func(*args, **kwargs)
-        return cache[key]
-    return wrapper
+    def __init__(self, initial_count):
+        self.initial_count = initial_count
+
+    def increment(self):
+        self.initial_count += 1
+
+    def get(self):
+        return self.initial_count
 
 
-@cache_deco
-def solution(func_map, func_filter, data):
-    counter = 0
-    for item in data:
-        if func_filter(item):
-            mapped_item = func_map(item)
-            if counter % 2 == 0:
-                yield mapped_item
-            counter += 1
+# YOUR CODE HERE
 
 
 code = []
